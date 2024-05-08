@@ -1,2 +1,5 @@
 #!/usr/bin/python3
-print(''.join(chr(i) for i in range(97, 123) if chr(i) not in ['q', 'e']))
+for alpha_letters in range(ord('a'), ord('z')+1):
+    if alpha_letters in [101, 113]:
+        continue
+    print("{:c}".format(alpha_letters), end="")
