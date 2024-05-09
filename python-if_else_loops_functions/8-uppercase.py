@@ -8,4 +8,4 @@ def uppercase(s):
             # ASCII values of lowercase letters are 32 greater than uppercase
         else:
             result += char
-            print(result)
+    print(result)
