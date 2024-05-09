@@ -8,7 +8,15 @@ def uppercase(s):
             # ASCII values of lowercase letters are 32 greater than uppercase
         else:
             result += char
-    print(result)
+    return result
 
-s = "hello world"
-print(uppercase(s))
+
+test_cases = ["holberton", "Holberton School",
+              "Holberton School, 98 battery street", "",
+              98, "z"]
+
+for case in test_cases:
+    if isinstance(case, str):
+        print(uppercase(case))
+    else:
+        print("{}".format(uppercase(str(case))))
