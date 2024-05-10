@@ -1,10 +1,8 @@
 #!/usr/bin/python3
-from add_0 import add
+from add_0 import add as FAKE_add
 
 a = 1
 b = 2
 
-result = add(a, b)
-
 # Print the result using string formatting
-print("{} + {} = {}".format(a, b, result))
+print("a = {} and b = {} FAKE add() => {}".format(a, b, FAKE_add(a, b)))
