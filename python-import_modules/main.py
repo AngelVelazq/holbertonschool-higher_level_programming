@@ -6,6 +6,5 @@ b = 2
 
 result = add(a, b)
 
-if__name__ == "__main__"
-# This block will only execute if the script is run directly, not imported
-pass
+# Print the result using string formatting
+print("{} + {} = {}".format(a, b, result))
