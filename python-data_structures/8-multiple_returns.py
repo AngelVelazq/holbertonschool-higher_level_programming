@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-def multiple_returns(sentence):
+multiple_returns(sentence):
     # Check if the sentence is empty
     if len(sentence) == 0:
         first_char = None
