@@ -13,10 +13,3 @@ def safe_print_list_integers(my_list=[], x=0):
     except Exception as e:
         print("An error occurred:", e)
         return count
-
-
-# Test the function
-my_list = [1, 2, 'a', 3, 'b', 4, 5]
-x = 6
-num_printed = safe_print_list_integers(my_list, x)
-print("Number of integers printed:", num_printed)
