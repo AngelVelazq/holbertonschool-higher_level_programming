@@ -1,11 +1,22 @@
 #!/usr/bin/python3
 def safe_print_list_integers(my_list=[], x=0):
     count = 0
-    for i in range(x):
-        try:
-            print("{:d}".format(my_list[i]), end="")
-            count += 1
-        except (ValueError, TypeError):
-            pass
-    print()
-    return
+    try:
+        for item in my_list:
+            if count >= x:
+                break
+            if isinstance(item, int):
+                print("{:d}".format(item), end=" ")
+                count += 1
+        print()  # Print newline after printing all integers
+        return count
+    except Exception as e:
+        print("An error occurred:", e)
+        return count
+
+
+# Test the function
+my_list = [1, 2, 'a', 3, 'b', 4, 5]
+x = 6
+num_printed = safe_print_list_integers(my_list, x)
+print("Number of integers printed:", num_printed)
