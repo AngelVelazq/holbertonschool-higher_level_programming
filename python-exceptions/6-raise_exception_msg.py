@@ -4,4 +4,6 @@ def raise_exception_msg(message=""):
         raise NameError(message)
     except NameError as e:
         print("NameError:", e)
-        raise_exception_msg
+
+
+raise_exception_msg
