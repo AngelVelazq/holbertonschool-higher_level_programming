@@ -1,6 +1,10 @@
 #!/usr/bin/python3
 class Square:
     """
-    This class represents a square.
+    Class represents a square
     """
     pass
+
+
+obj = Square()
+print(obj)
