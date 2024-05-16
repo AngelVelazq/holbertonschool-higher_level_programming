@@ -1,6 +1,6 @@
 #!/usr/bin/python3
+"""_summary_"""
+
+
 class square:
     pass
-
-s = square()
-print(s)
