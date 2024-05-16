@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-"""_summary_"""
-
-
 class square:
     pass
+    """empty class of a square"""
