@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
+"""creates empty class square"""
+
+
 class Square:
-    """Defines a square"""
+    """defines empty class"""
     pass
-
-
-obj = Square
-print(obj)
