@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""
-square module
-
-This module provides an empty class to represent a square.
-"""
+"""Square module"""
 
 
 class Square:
