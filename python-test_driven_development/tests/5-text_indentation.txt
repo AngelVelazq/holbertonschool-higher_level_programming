@@ -1,30 +1,18 @@
 >>> text_indentation = __import__("5-text_indentation").text_indentation
-
-# Test cases with different punctuation marks
-
->>> text_indentation("This is a sentence. This is another sentence.")
-This is a sentence.
-This is another sentence.
-
->>> text_indentation("What's your name? My name is John.")
-What's your name?
-My name is John.
-
->>> text_indentation("The quick brown fox jumps over the lazy dog.")
-The quick brown fox jumps over the lazy dog.
-
->>> text_indentation("How are you doing? I'm fine, thank you!")
-How are you doing?
-I'm fine, thank you!
-
->>> text_indentation("To be or not to be: that is the question.")
-To be or not to be:
-that is the question.
-
-# Test cases with empty input or non-string input
-
->>> text_indentation("")
+>>> print(text_indentation.__doc__)
+'Function that prints a text with 2 new lines after each of these characters: ., ? and :'
+>>> text_indentation(
+...     "This is a sample text. It has multiple sentences? Each separated by periods. "
+...     "How are you: doing today?"
+... )
+This is a sample text
+It has multiple sentences
+Each separated by periods
+How are you
+doing today
 >>> text_indentation(123)
 Traceback (most recent call last):
-    ...
+  File "<stdin>", line 1, in <module>
+  File "5-text_indentation.py", line 7, in text_indentation
+    raise TypeError("text must be a string")
 TypeError: text must be a string
