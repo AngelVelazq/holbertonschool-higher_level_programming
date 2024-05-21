@@ -88,31 +88,3 @@ class Rectangle:
         def square(cls, size=0):
             """Return a new Rectangle instance with width/height/size"""
             return cls(size, size)
-
-
-# Example usage
-if __name__ == "__main__":
-    r1 = Rectangle(3, 4)
-    r2 = Rectangle(2, 5)
-    r3 = Rectangle(4, 4)
-
-    print(r1)  # Should print the rectangle using '#'
-    print(r2)  # Should print the rectangle using '#'
-    print(f"Number of instances: {Rectangle.number_of_instances}")
-    # Should print 3
-
-    biggest = Rectangle.bigger_or_equal(r1, r2)
-    print(f"The biggest rectangle is: {biggest}")
-
-    biggest = Rectangle.bigger_or_equal(r1, r3)
-    print(f"The biggest rectangle is: {biggest}")
-
-    square_r = Rectangle.square(5)
-    print(f"A square: {square_r}")
-
-    del r1
-    del r2
-    del r3
-    del square_r
-    print(f"Number of instances: {Rectangle.number_of_instances}")
-    # Should print 0
