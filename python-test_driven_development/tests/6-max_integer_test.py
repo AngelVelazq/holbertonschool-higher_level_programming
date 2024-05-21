@@ -4,7 +4,17 @@ Unittests for max_integer function
 """
 
 import unittest
-max_integer = __import__('6-max_integer').max_integer
+import importlib.util
+import sys
+
+# Dynamically load the 6-max_integer module
+module_name = '6-max_integer'
+file_path = './6-max_integer.py'
+spec = importlib.util.spec_from_file_location(module_name, file_path)
+module = importlib.util.module_from_spec(spec)
+sys.modules[module_name] = module
+spec.loader.exec_module(module)
+max_integer = module.max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
