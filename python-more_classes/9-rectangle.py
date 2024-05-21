@@ -1,21 +1,15 @@
-#!/usr/bin/python3
-"""
-This module defines a Rectangle class.
-"""
-
-
 class Rectangle:
     """
     A class that defines a rectangle by its width and height.
     """
 
-    number_of_instances = 0
-    print_symbol = "#"
+    number_of_instances = 0  # Public class attribute
+    print_symbol = "#"  # Public class attribute
 
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
-        Rectangle.number_of_instances += 1
+        Rectangle.number_of_instances += 1  # Incremented during instantiation
 
     @property
     def width(self):
@@ -56,7 +50,7 @@ class Rectangle:
         return 2 * (self.__width + self.__height)
 
     def __str__(self):
-        """Return the string of the rectangle using the '#' character"""
+        """Return the string of the rectangle using print_symbol character."""
         if self.__width == 0 or self.__height == 0:
             return ""
         rect_str = ""
@@ -69,8 +63,9 @@ class Rectangle:
         return f"Rectangle({self.__width}, {self.__height})"
 
     def __del__(self):
-        """Print bye rectangle... if deleted"""
+        """Prints the message when an instance of Rectangle is deleted."""
         Rectangle.number_of_instances -= 1
+        # Decremented during instance deletion
         print("Bye rectangle...")
 
     @staticmethod
@@ -85,6 +80,35 @@ class Rectangle:
         else:
             return rect_2
 
-        def square(cls, size=0):
-            """Return a new Rectangle instance with width/height/size"""
-            return cls(size, size)
+    @classmethod
+    def square(cls, size=0):
+        """Return a new Rectangle instance with width == height == size."""
+        return cls(size, size)
+
+
+# Example usage
+if __name__ == "__main__":
+    r1 = Rectangle(3, 4)
+    r2 = Rectangle(2, 5)
+    r3 = Rectangle(4, 4)
+
+    print(r1)  # Should print the rectangle using '#'
+    print(r2)  # Should print the rectangle using '#'
+    print(f"Number of instances: {Rectangle.number_of_instances}")
+    # Should print 3
+
+    biggest = Rectangle.bigger_or_equal(r1, r2)
+    print(f"The biggest rectangle is: {biggest}")
+
+    biggest = Rectangle.bigger_or_equal(r1, r3)
+    print(f"The biggest rectangle is: {biggest}")
+
+    square_r = Rectangle.square(5)
+    print(f"A square: {square_r}")
+
+    del r1
+    del r2
+    del r3
+    del square_r
+    print(f"Number of instances: {Rectangle.number_of_instances}")
+    # Should print 0
