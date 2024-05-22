@@ -54,12 +54,10 @@ class Rectangle:
         """Return the string of the rectangle using print_symbol character."""
         if self.__width == 0 or self.__height == 0:
             return ""
-
-        rect_str = []
-        for i in range(self.__height):
-            line = "".join(str(self.print_symbol) for _ in range(self.__width))
-            rect_str.append(line)
-            return "\n".join(rect_str)
+        rect_str = ""
+        for _ in range(self.__height):
+            rect_str += str(self.print_symbol) * self.__width + "\n"
+        return rect_str.rstrip()
 
     def __repr__(self):
         """Return a string of the rectangle used to recreate the object"""
