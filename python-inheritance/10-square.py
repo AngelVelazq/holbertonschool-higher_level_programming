@@ -9,4 +9,10 @@ class Square(Rectangle):
 
     def __init__(self, size):
         """Initializes a Square instance with size"""
+        self.integer_validator("size, size")
+        self.__ = size
         super().__init__(size, size)
+
+    def area(self):
+        """area method implemented"""
+        return self.__ ** 2
