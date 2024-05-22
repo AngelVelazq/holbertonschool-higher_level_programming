@@ -5,7 +5,6 @@ Manages instance lifecycle and custom visual representation."""
 
 
 class Rectangle:
-    """A class Rectangle that defines a rectangle and can also represent squares."""
 
     number_of_instances = 0  # Class attribute to track the number of instances
     print_symbol = "#"
