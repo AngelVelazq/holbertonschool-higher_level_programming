@@ -59,8 +59,8 @@ class Rectangle:
         return rect_str.rstrip()
 
     def __repr__(self):
-        """Return a string of the rectangle used to recreate the object."""
-        return f"Rectangle({self.__width}, {self.__height})"
+        """Return a string of the rectangle used to recreate the object"""
+        return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __del__(self):
         """Prints the message when an instance of Rectangle is deleted."""
