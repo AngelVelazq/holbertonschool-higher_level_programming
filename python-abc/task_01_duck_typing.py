@@ -28,8 +28,9 @@ class Circle(Shape):
 
 class Rectangle(Shape):
     def __init__(self, width, height):
-        self.width = width
-        self.height = height
+        if width < 0 or height < 0:
+            self.width = width
+            self.height = height
 
     def area(self):
         return self.width * self.height
@@ -51,4 +52,5 @@ if __name__ == "__main__":
     shape_info(circle)
 
     print("\nRectangle Info:")
+    print(f"Rectangle dimensions: width={rectangle.width}, height={rectangle.height}")
     shape_info(rectangle)
