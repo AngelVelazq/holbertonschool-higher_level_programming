@@ -1,5 +1,6 @@
 from task_01_duck_typing import Circle
 
+
 def test_circle_negative():
     try:
         Circle(-5)
