@@ -3,7 +3,6 @@ import math
 
 
 class Shape(ABC):
-
     @abstractmethod
     def area(self):
         pass
@@ -15,12 +14,10 @@ class Shape(ABC):
 
 class Circle(Shape):
     def __init__(self, radius):
-        if radius < 0:
-            raise ValueError("Radius cannot be negative")
         self.radius = radius
 
     def area(self):
-        return math.pi * (self.radius ** 2)
+        return math.pi * self.radius ** 2
 
     def perimeter(self):
         return 2 * math.pi * self.radius
@@ -28,9 +25,8 @@ class Circle(Shape):
 
 class Rectangle(Shape):
     def __init__(self, width, height):
-        if width < 0 or height < 0:
-            self.width = width
-            self.height = height
+        self.width = width
+        self.height = height
 
     def area(self):
         return self.width * self.height
@@ -44,13 +40,9 @@ def shape_info(shape):
     print(f"Perimeter: {shape.perimeter()}")
 
 
-if __name__ == "__main__":
-    circle = Circle(5)
-    rectangle = Rectangle(4, 7)
+circle = Circle(5)
+rectangle = Rectangle(4, 6)
 
-    print("Circle Info:")
-    shape_info(circle)
 
-    print("\nRectangle Info:")
-    print(f"Rectangle dimensions: width={rectangle.width}, height={rectangle.height}")
-    shape_info(rectangle)
+shape_info(circle)
+shape_info(rectangle)
