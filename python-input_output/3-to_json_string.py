@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines a function to return the JSON
+"""This module defines a function to return the JSON
 representation of an object (string)."""
 
 
@@ -23,10 +23,12 @@ def to_json_string(my_obj):
         return "null"
     elif isinstance(my_obj, list):
         return "[" + ", ".join(to_json_string(i) for i in my_obj) + "]"
+    elif isinstance(my_obj, set):
+        return "[" + ", ".join(to_json_string(i) for i in sorted(my_obj)) + "]"
     elif isinstance(my_obj, dict):
         items = (f"{to_json_string(k)}: {to_json_string(v)}"
                  for k, v in my_obj.items())
         return "{" + ", ".join(items) + "}"
     else:
-        raise TypeError("Object of type '{}' is not JSON serializable"
-                        .format(type(my_obj).__name__))
+        raise TypeError
+    (f"Object of type '{type(my_obj).__name__}' is not JSON serializable")
