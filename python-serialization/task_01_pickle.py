@@ -8,52 +8,45 @@ class CustomObject:
         self.is_student = is_student
 
     def display(self):
-        print(f"Name: {self.name}")
-        print(f"Age: {self.age}")
-        print(f"Is Student: {self.is_student}")
+        print("Name:", self.name)
+        print("Age:", self.age)
+        print("Is Student:", self.is_student)
 
     def serialize(self, filename):
-        """
-        Serialize the current instance to a file.
-        :param filename: The name of the file to save the serialized object.
-        """
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
-        except (IOError, pickle.PickleError) as e:
-            print(f"An error occurred while serializing to the file: {e}")
+            print("Serialization successful.")
+        except Exception as e:
+            print(f"Serialization failed: {e}")
 
     @classmethod
     def deserialize(cls, filename):
-        """
-        Deserialize an instance from a file.
-        :param filename: The name of the file to load the serialized object
-        :return: An instance of CustomObject or None if an error occurs.
-        """
         try:
             with open(filename, 'rb') as file:
-                return pickle.load(file)
-        except (IOError, pickle.PickleError) as e:
-            print(f"An error occurred while deserializing from the file: {e}")
+                obj = pickle.load(file)
+            return obj
+        except FileNotFoundError:
+            print("File not found.")
+            return None
+        except pickle.UnpicklingError:
+            print("Unpickling failed.")
             return None
 
 
-# Sample usage
+# Example usage
 if __name__ == "__main__":
-    # Create an instance of CustomObject
-    original_object = CustomObject("John", 25, True)
+    # Creating an instance of CustomObject
+    obj = CustomObject("John", 25, True)
 
-    # Display the original object
-    print("Original Object:")
-    original_object.display()
+    # Displaying object attributes
+    obj.display()
 
-    # Serialize the object to a file
-    original_object.serialize('custom_object.pkl')
+    # Serializing the object
+    obj.serialize("custom_object.pkl")
 
-    # Deserialize the object from the file
-    deserialized_object = CustomObject.deserialize('custom_object.pkl')
-
-    # Display the deserialized object
-    if deserialized_object:
-        print("\nDeserialized Object:")
-        deserialized_object.display()
+    # Deserializing the object
+    new_obj = CustomObject.deserialize("custom_object.pkl")
+    if new_obj:
+        print("\nDeserialized object:")
+        new_obj.display()
