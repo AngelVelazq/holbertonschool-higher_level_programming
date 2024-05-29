@@ -12,11 +12,9 @@ def serialize_to_xml(dictionary, filename):
     root = ET.Element('data')
 
     for key, value in dictionary.items():
-        # Create child element for each key-value pair
         child = ET.SubElement(root, key)
         child.text = str(value)
 
-    # Create ElementTree object and write to file
     tree = ET.ElementTree(root)
     tree.write(filename)
 
@@ -35,17 +33,13 @@ def deserialize_from_xml(filename):
     tree = ET.parse(filename)
     root = tree.getroot()
 
-    # Reconstruct dictionary from XML elements
     data_dict = {}
     for child in root:
         data_dict[child.tag] = child.text
 
-    # Perform type conversion as needed
     for key, value in data_dict.items():
-        # Convert strings to integers if possible
         if value.isdigit():
             data_dict[key] = int(value)
-        # Convert strings to floats if possible
         elif '.' in value and all(
             char.isdigit() or char == '.'
             for char in value
