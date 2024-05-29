@@ -27,7 +27,7 @@ class CustomObject:
     def deserialize(cls, filename):
         """
         Deserialize an instance from a file.
-        :param filename: The name of the file to load the serialized object from.
+        :param filename: The name of the file to load the serialized object
         :return: An instance of CustomObject or None if an error occurs.
         """
         try:
