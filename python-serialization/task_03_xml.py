@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+"""explore serialization and deserialization using XML"""
 
 
 def serialize_to_xml(dictionary, filename):
@@ -50,7 +51,6 @@ def deserialize_from_xml(filename):
 
 
 if __name__ == "__main__":
-    # Testing the functions
     sample_dict = {
         'name': 'John',
         'age': 28,
