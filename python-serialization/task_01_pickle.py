@@ -3,26 +3,44 @@ import pickle
 
 
 class CustomObject:
+    """A class representing a custom object with attributes:
+    name, age, and is_student."""
+
     def __init__(self, name, age, is_student):
+        """Initializes a CustomObject instance."""
         self.name = name
         self.age = age
         self.is_student = is_student
 
     def display(self):
+        """
+        Display the attributes of the CustomObject instance.
+        """
         print("Name:", self.name)
         print("Age:", self.age)
         print("Is Student:", self.is_student)
 
     def serialize(self, filename):
+        """Serialize the CustomObject instance and save it to a file.
+
+        Returns:
+            bool: True if serialization is successful, False otherwise."""
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
             print("Serialization successful.")
+            return True
         except Exception as e:
             print(f"Serialization failed: {e}")
+            return False
 
     @classmethod
     def deserialize(cls, filename):
+        """Deserialize a CustomObject instance from a file.
+
+        Returns:
+            CustomObject or None: The deserialized object...
+            if successful, None otherwise."""
         try:
             with open(filename, 'rb') as file:
                 obj = pickle.load(file)
