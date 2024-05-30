@@ -33,13 +33,14 @@ def deserialize_from_xml(filename):
     Returns:
         dict: A Python dictionary reconstructed from the XML data.
     """
-    tree = ET.parse(filename)
-    root = tree.getroot()
+    tree = ET.parse(filename) # Parse the XML file
+    root = tree.getroot() # Get the root element
 
     data_dict = {}
 
     # Navigate through XML elements to reconstruct the dictionary
     for child in root:
-        dict[child.tag] = child.text
+        data_dict[child.tag] = child.text # Use data_dict to store the key-value pairs
+
 
     return data_dict
