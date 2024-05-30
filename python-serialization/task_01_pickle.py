@@ -48,11 +48,8 @@ class CustomObject:
             with open(filename, 'rb') as file:
                 obj = pickle.load(file)
             return obj
-        except FileNotFoundError:
-            print("File not found.")
-            return None
-        except pickle.UnpicklingError:
-            print("Unpickling failed.")
+        except Exception as e:
+            print(f"Serialization failed: {e}")
             return None
 
 
