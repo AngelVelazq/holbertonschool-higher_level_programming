@@ -33,8 +33,6 @@ class CustomObject:
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
-            print("Serialization successful.")
-            return True
         except Exception as e:
             print(f"Serialization failed: {e}")
             return False
