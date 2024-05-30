@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
+"""
+Module to serialize and deserialize custom objects
+"""
 import pickle
+"""Module imported - primarily used in serializing
+and deserializing a Python object structure."""
 
 
 class CustomObject:
