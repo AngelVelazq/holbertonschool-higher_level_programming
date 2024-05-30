@@ -4,8 +4,7 @@ import xml.etree.ElementTree as ET
 
 
 def serialize_to_xml(dictionary, filename):
-    """
-    Serialize the given Python dictionary into XML
+    """Serialize the given Python dictionary into XML
     and save it to the specified file.
 
     Args:
@@ -36,32 +35,8 @@ def deserialize_from_xml(filename):
     root = tree.getroot()
 
     data_dict = {}
+    # Navigate through XML elements to reconstruct the dictionary
     for child in root:
-        data_dict[child.tag] = child.text
-
-    for key, value in data_dict.items():
-        if value.isdigit():
-            data_dict[key] = int(value)
-        elif '.' in value and all(
-            char.isdigit() or char == '.'
-            for char in value
-        ):
-            data_dict[key] = float(value)
+        dict[child.tag] = child.text
 
     return data_dict
-
-
-if __name__ == "__main__":
-    sample_dict = {
-        'name': 'John',
-        'age': 28,
-        'city': 'New York'
-    }
-
-    xml_file = "data.xml"
-    serialize_to_xml(sample_dict, xml_file)
-    print(f"Dictionary serialized to {xml_file}")
-
-    deserialized_data = deserialize_from_xml(xml_file)
-    print("\nDeserialized Data:")
-    print(deserialized_data)
