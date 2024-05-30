@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" Serializing and Deserializing with XML"""
+
 import xml.etree.ElementTree as ET
 """explore serialization and deserialization using XML"""
 
@@ -35,8 +37,9 @@ def deserialize_from_xml(filename):
     root = tree.getroot()
 
     data_dict = {}
+
     # Navigate through XML elements to reconstruct the dictionary
     for child in root:
         dict[child.tag] = child.text
 
-    return data_dict
+        return data_dict
