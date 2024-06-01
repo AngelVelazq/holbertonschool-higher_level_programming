@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """
-A simple HTTP server with three endpoints:
+A simple HTTP server with four endpoints:
 - `/`: Returns a plain text greeting.
 - `/data`: Returns a JSON object with sample data.
+- `/info`: Returns a JSON object with API information.
 - `/status`: Returns a plain text status message.
 """
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
+import sys
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -26,6 +28,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write(json.dumps(data).encode())
+        elif self.path == '/info':
+            # /info endpoint returns a JSON object with API information.
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            info = {"version": "1.0",
+                    "description": "A simple API built with http.server"}
+            self.wfile.write(json.dumps(info).encode())
         elif self.path == '/status':
             # /status endpoint returns a plain text status message.
             self.send_response(200)
@@ -48,9 +58,9 @@ def run():
         http.serve_forever()
     except KeyboardInterrupt:
         print('\nKeyboard interrupt received, stopping server.')
-    finally:
         http.server_close()
         print('Server stopped.')
+        sys.exit(0)
 
 
 if __name__ == "__main__":
