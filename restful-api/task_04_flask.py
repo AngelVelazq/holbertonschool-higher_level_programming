@@ -4,10 +4,7 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # In-memory users dictionary
-users = {
-    "jane": {"username": "jane",
-             "name": "Jane", "age": 28, "city": "Los Angeles"}
-}
+users = {}
 
 
 # Root endpoint
@@ -43,8 +40,10 @@ def get_user(username):
 def add_user():
     data = request.get_json()
     username = data.get('username')
-    if not username or username in users:
-        return jsonify({"error": "Invalid or existing username"}), 400
+    if not username:
+        return jsonify({"error": "Username is required"}), 400
+    if username in users:
+        return jsonify({"error": "Username already exists"}), 400
     users[username] = {
         "username": username,
         "name": data.get('name'),
