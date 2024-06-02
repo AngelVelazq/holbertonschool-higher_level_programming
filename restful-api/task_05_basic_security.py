@@ -8,9 +8,11 @@ from flask_jwt_extended import JWTManager, create_access_token, \
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+
 # Secret key for JWT
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this
 jwt = JWTManager(app)
+
 
 # In-memory users dictionary with hashed passwords
 users = {
@@ -18,11 +20,13 @@ users = {
     "jane": generate_password_hash("password456")
 }
 
+
 # User roles
 user_roles = {
     "john": "admin",
     "jane": "user"
 }
+
 
 # Basic Auth verification
 @auth.verify_password
@@ -32,16 +36,19 @@ def verify_password(username, password):
         return username
     return None
 
+
 # Root endpoint
 @app.route('/')
 def home():
     return "Welcome to the Flask API!"
+
 
 # Protected /basic-protected endpoint with Basic Auth
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
     return "Basic Auth: Access Granted"
+
 
 # JWT login route
 @app.route('/login', methods=['POST'])
@@ -57,11 +64,13 @@ def login():
         return jsonify(access_token=access_token), 200
     return jsonify({"error": "Invalid credentials"}), 401
 
+
 # Protected /jwt-protected route with JWT
 @app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
 def jwt_protected():
     return "JWT Auth: Access Granted"
+
 
 # Role-based access control decorator
 def role_required(role):
@@ -76,11 +85,13 @@ def role_required(role):
         return wrapped
     return decorator
 
+
 # /admin-only endpoint accessible only by admin users
 @app.route('/admin-only')
 @role_required('admin')
 def admin_only():
     return "Admin Access: Granted"
+
 
 # Run the Flask development server
 if __name__ == "__main__":
