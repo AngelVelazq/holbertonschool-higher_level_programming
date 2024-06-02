@@ -1,67 +1,68 @@
 #!/usr/bin/python3
-"""
-A simple HTTP server with four endpoints:
-- `/`: Returns a plain text greeting.
-- `/data`: Returns a JSON object with sample data.
-- `/info`: Returns a JSON object with API information.
-- `/status`: Returns a plain text status message.
-"""
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import json
-import sys
+import http.server  # Import the http.server module for creating an HTTP server
+import json  # Import the json module for handling JSON data
 
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    """Handles GET requests for the simple server."""
-
+# Create a subclass of http.server.BaseHTTPRequestHandler to handle requests
+class SimpleHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
+        # Check the path of the request to route it to the appropriate handler
         if self.path == '/':
-            # Root endpoint returns a greeting message.
+            # Send a 200 OK response
             self.send_response(200)
+            # Specify the content type as text/plain
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
+            # Write the response body
             self.wfile.write(b"Hello, this is a simple API!")
+
         elif self.path == '/data':
-            # /data endpoint returns a JSON object.
+            # Send a 200 OK response
             self.send_response(200)
+            # Specify the content type as application/json
             self.send_header('Content-type', 'application/json')
             self.end_headers()
+            # Create a sample JSON data
             data = {"name": "John", "age": 30, "city": "New York"}
-            self.wfile.write(json.dumps(data).encode())
-        elif self.path == '/info':
-            # /info endpoint returns a JSON object with API information.
+            # Write the JSON response body
+            self.wfile.write(json.dumps(data).encode('utf-8'))
+
+        elif self.path == '/status':
+            # Send a 200 OK response
             self.send_response(200)
+            # Specify the content type as application/json
             self.send_header('Content-type', 'application/json')
             self.end_headers()
+            # Write response OK
+            self.wfile.write(b"OK")
+
+        elif self.path == '/info':
+            # Send a 200 OK response
+            self.send_response(200)
+            # Specify the content type as application/json
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+            # Create an info JSON data
             info = {"version": "1.0",
                     "description": "A simple API built with http.server"}
-            self.wfile.write(json.dumps(info).encode())
-        elif self.path == '/status':
-            # /status endpoint returns a plain text status message.
-            self.send_response(200)
-            self.send_header('Content-type', 'text/plain')
-            self.end_headers()
-            self.wfile.write(b"OK")
+            # Write the JSON response body
+            self.wfile.write(json.dumps(info).encode('utf-8'))
+
         else:
-            # Any other endpoint returns a 404 Not Found response.
+            # Send a 404 Not Found response for undefined endpoints
             self.send_response(404)
-            self.send_header('Content-type', 'text/plain')
+            # Specify the content type as application/json
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
-            self.wfile.write(b"Endpoint not found")
+            # Write response 404 Not Found
+            self.wfile.write(b"404 Not Found")
 
 
-def run():
-    server_address = ('', 8000)
-    http = HTTPServer(server_address, SimpleHTTPRequestHandler)
-    print('Starting server...')
-    try:
-        http.serve_forever()
-    except KeyboardInterrupt:
-        print('\nKeyboard interrupt received, stopping server.')
-        http.server_close()
-        print('Server stopped.')
-        sys.exit(0)
+# Set the server address and port
+server_address = ('', 8000)
+httpd = http.server.HTTPServer(server_address, SimpleHTTPRequestHandler)
 
-
-if __name__ == "__main__":
-    run()
+# Start the server
+jls_extract_var = print
+jls_extract_var("Starting server on port 8000...")
+httpd.serve_forever()
