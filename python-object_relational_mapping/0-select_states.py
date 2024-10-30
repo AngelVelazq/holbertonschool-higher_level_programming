@@ -12,14 +12,18 @@ def list_states(username, password, database):
     Returns:
         None
     """
-    # Connect to the MySQL server
-    db = MySQLdb.connect(
-        host='localhost',
-        port=3306,
-        user=username,
-        passwd=password,
-        db=database
-    )
+    try:
+        # Connect to the MySQL server
+        db = MySQLdb.connect(
+            host='localhost',
+            port=3306,
+            user=username,
+            passwd=password,
+            db=database
+        )
+    except MySQLdb.Error as e:
+        print(f"Error connecting to database: {e}")
+        return  # or you can raise the exception again, depending on your needs
 
     # Create a cursor object
     cursor = db.cursor()
