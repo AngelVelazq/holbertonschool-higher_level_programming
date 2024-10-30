@@ -12,6 +12,8 @@ def list_states(username, password, database):
     Returns:
         None
     """
+    db = None
+    cursor = None
     try:
         # Connect to the MySQL server
         db = MySQLdb.connect(
@@ -21,29 +23,30 @@ def list_states(username, password, database):
             passwd=password,
             db=database
         )
+
+        # Create a cursor object
+        cursor = db.cursor()
+
+        # SQL query to select all states
+        query = "SELECT * FROM states ORDER BY id ASC"
+
+        # Execute the query
+        cursor.execute(query)
+
+        # Fetch all the rows
+        rows = cursor.fetchall()
+
+        # Print each row
+        for row in rows:
+            print(row)
     except MySQLdb.Error as e:
-        print(f"Error connecting to database: {e}")
-        return  # or you can raise the exception again, depending on your needs
-
-    # Create a cursor object
-    cursor = db.cursor()
-
-    # SQL query to select all states
-    query = "SELECT * FROM states ORDER BY id ASC"
-
-    # Execute the query
-    cursor.execute(query)
-
-    # Fetch all the rows
-    rows = cursor.fetchall()
-
-    # Print each row
-    for row in rows:
-        print(row)
-
-    # Close the cursor and database connection
-    cursor.close()
-    db.close()
+        print(f"Error: {e}")
+    finally:
+        # Close the cursor and database connection
+        if cursor is not None:
+            cursor.close()
+        if db is not None:
+            db.close()
 
 if __name__ == "__main__":
     list_states("username", "password", "database")
